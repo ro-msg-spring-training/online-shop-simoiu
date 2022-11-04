@@ -1,4 +1,4 @@
-package ro.msg.learning.shop.model;
+package ro.msg.learning.shop.model.entities;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -7,25 +7,23 @@ import lombok.ToString;
 import lombok.experimental.SuperBuilder;
 
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import java.math.BigDecimal;
+import java.time.LocalDate;
 
 @Entity
 @Getter
 @Setter
 @ToString
 @RequiredArgsConstructor
-@Table(name = "ORDER_DETAIL")
+@Table(name = "REVENUE")
 @SuperBuilder
-public class OrderDetail extends BaseEntity {
+public class Revenue extends BaseEntity {
     @ManyToOne
-    private Order order;
-
-    @ManyToOne
-    private Product product;
-
-    @ManyToOne
-    private Location shippedFrom;
-
-    private int quantity;
+    @JoinColumn
+    private Location location;
+    private LocalDate date;
+    private BigDecimal sum;
 }

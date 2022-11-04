@@ -1,4 +1,4 @@
-package ro.msg.learning.shop.model;
+package ro.msg.learning.shop.model.entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

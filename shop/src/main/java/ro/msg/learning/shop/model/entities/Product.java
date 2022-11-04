@@ -1,9 +1,13 @@
-package ro.msg.learning.shop.model;
+package ro.msg.learning.shop.model.entities;
 
-import lombok.*;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.util.List;
 
 @Entity
@@ -14,6 +18,7 @@ import java.util.List;
 @Table(name = "Product")
 @SuperBuilder
 public class Product extends BaseEntity {
+    @NotEmpty
     private String name;
     private String description;
     private Double price;

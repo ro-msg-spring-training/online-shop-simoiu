@@ -1,4 +1,4 @@
-package ro.msg.learning.shop.model;
+package ro.msg.learning.shop.model.entities;
 
 
 import lombok.*;
@@ -14,7 +14,7 @@ import javax.persistence.MappedSuperclass;
 @Setter
 @ToString
 @RequiredArgsConstructor
-@SuperBuilder
+@SuperBuilder(toBuilder = true)
 public abstract class BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

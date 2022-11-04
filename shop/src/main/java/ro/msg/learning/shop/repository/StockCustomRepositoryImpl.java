@@ -2,8 +2,8 @@ package ro.msg.learning.shop.repository;
 
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Repository;
-import ro.msg.learning.shop.dto.OrderDetailDto;
-import ro.msg.learning.shop.model.Stock;
+import ro.msg.learning.shop.model.entities.OrderDetail;
+import ro.msg.learning.shop.model.entities.Stock;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -18,7 +18,7 @@ public class StockCustomRepositoryImpl implements StockCustomRepository {
     private EntityManager entityManager;
 
     @Override
-    public List<Integer> findLocationsHavingRequiredProducts(List<OrderDetailDto> orderDetailList) {
+    public List<Integer> findLocationsHavingRequiredProducts(List<OrderDetail> orderDetailList) {
         var cb = entityManager.getCriteriaBuilder();
         var query = cb.createQuery(Integer.class);
         var stock = query.from(Stock.class);
@@ -29,7 +29,7 @@ public class StockCustomRepositoryImpl implements StockCustomRepository {
 
         orderDetailList.forEach(orderDetailDto -> predicates.add(
                 cb.and(
-                        cb.equal(productID, orderDetailDto.getProductId()),
+                        cb.equal(productID, orderDetailDto.getProduct().getId()),
                         cb.greaterThanOrEqualTo(quantity, orderDetailDto.getQuantity())
                 )
         ));
@@ -42,7 +42,7 @@ public class StockCustomRepositoryImpl implements StockCustomRepository {
         return entityManager.createQuery(query).getResultList();
     }
 
-    public static Specification<Stock> hasLocationAndProducts(Integer locationId, List<OrderDetailDto> orderDetailList) {
+    public static Specification<Stock> hasLocationAndProducts(Integer locationId, List<OrderDetail> orderDetailList) {
         return (stock, cq, cb) -> {
             Path<Integer> locationIdPath = stock.get("location").get("id");
             Path<Integer> productIdPath = stock.get("product").get("id");
@@ -51,7 +51,7 @@ public class StockCustomRepositoryImpl implements StockCustomRepository {
             orderDetailList.forEach(orderDetailDto -> predicates.add(
                     cb.and(
                             cb.equal(locationIdPath, locationId),
-                            cb.equal(productIdPath, orderDetailDto.getProductId())
+                            cb.equal(productIdPath, orderDetailDto.getProduct().getId())
                     )
             ));
             return cb.or(predicates.toArray(new Predicate[0]));

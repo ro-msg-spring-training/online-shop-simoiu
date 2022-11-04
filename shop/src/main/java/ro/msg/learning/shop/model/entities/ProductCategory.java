@@ -1,4 +1,4 @@
-package ro.msg.learning.shop.model;
+package ro.msg.learning.shop.model.entities;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -16,16 +16,14 @@ import java.util.List;
 @Setter
 @ToString
 @RequiredArgsConstructor
-@Table(name = "CUSTOMER")
+@Table(name = "PRODUCT_CATEGORY")
 @SuperBuilder
-public class Customer extends BaseEntity {
-    private String firstName;
-    private String lastName;
-    private String username;
-    private String password;
-    private String emailAddress;
+public class ProductCategory extends BaseEntity {
+    private String name;
 
-    @OneToMany(mappedBy = "customer")
+    private String description;
+
+    @OneToMany(mappedBy = "category")
     @ToString.Exclude
-    private List<Order> orders;
+    private List<Product> products;
 }

@@ -21,12 +21,12 @@ public class ScheduledTasks {
 
     @PostConstruct
     public void init() {
-        var cronTrigger = CronExpression.parse(schedulerConfiguration.getSaveRevenuesCron());
+        var cronTrigger = CronExpression.parse(schedulerConfiguration.saveRevenuesCron());
         var next = cronTrigger.next(LocalDateTime.now());
         LOG.info("Next aggregation of all the sales revenues for each location starts at {}", next);
     }
 
-    @Scheduled(cron = "#{@schedulerConfiguration.saveRevenuesCron}")
+    @Scheduled(cron = "${schedule.save-revenues-cron}")
     public void saveTodayRevenues() {
         LOG.info("Starting saving all revenues for today");
         revenueService.saveAllRevenuesForToday();

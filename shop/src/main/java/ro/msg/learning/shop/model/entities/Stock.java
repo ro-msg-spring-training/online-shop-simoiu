@@ -1,4 +1,4 @@
-package ro.msg.learning.shop.model;
+package ro.msg.learning.shop.model.entities;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -14,7 +14,7 @@ import javax.persistence.*;
 @ToString
 @RequiredArgsConstructor
 @Table(name = "STOCK")
-@SuperBuilder
+@SuperBuilder(toBuilder = true)
 public class Stock extends BaseEntity {
     @ManyToOne
     @JoinColumn

@@ -1,4 +1,4 @@
-package ro.msg.learning.shop.model;
+package ro.msg.learning.shop.model.entities;
 
 import com.fasterxml.jackson.annotation.JsonUnwrapped;
 import lombok.Getter;
@@ -19,7 +19,7 @@ import java.util.List;
 @Table(name = "ORDER")
 @SuperBuilder
 public class Order extends BaseEntity {
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn
     private Customer customer;
 

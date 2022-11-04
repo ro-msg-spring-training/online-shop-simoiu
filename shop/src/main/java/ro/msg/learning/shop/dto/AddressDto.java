@@ -5,13 +5,16 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.math.BigDecimal;
+import javax.persistence.Embeddable;
 
+@Embeddable
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class RevenueForLocation {
-    private Integer locationId;
-    private BigDecimal revenue;
+public class AddressDto {
+    private String country;
+    private String city;
+    private String county;
+    private String street;
 }

@@ -589,7 +589,7 @@
 			"name": "Migration",
 			"item": [
 				{
-					"name": "Start flyway migration",
+					"name": "Populate db",
 					"event": [
 						{
 							"listen": "test",
@@ -598,12 +598,6 @@
 								"exec": [
 									"pm.test(\"response status is ok\", function () {\r",
 									"    pm.response.to.have.status(200);\r",
-									"});\r",
-									"\r",
-									"pm.test(\"migration successfully completed\", function () {\r",
-									"    const responseJson = pm.response.json();\r",
-									"    pm.expect(responseJson.operation).eq(\"migrate\");\r",
-									"    pm.expect(responseJson.success).true;\r",
 									"});"
 								],
 								"type": "text/javascript"
@@ -633,7 +627,7 @@
 					"response": []
 				},
 				{
-					"name": "Clean flyway database",
+					"name": "Clean db data",
 					"event": [
 						{
 							"listen": "test",
@@ -642,11 +636,6 @@
 								"exec": [
 									"pm.test(\"response status is ok\", function () {\r",
 									"    pm.response.to.have.status(200);\r",
-									"});\r",
-									"\r",
-									"pm.test(\"clean successfully completed\", function () {\r",
-									"    const responseJson = pm.response.json();\r",
-									"    pm.expect(responseJson.operation).eq(\"clean\");\r",
 									"});"
 								],
 								"type": "text/javascript"

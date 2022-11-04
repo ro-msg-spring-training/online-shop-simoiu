@@ -5,7 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import ro.msg.learning.shop.model.Address;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -14,11 +13,11 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class RouteMatrixResponse {
+public class RouteMatrixDto {
     private Boolean allToAll;
     private Boolean manyToOne;
     private List<BigDecimal> distance;
-    private List<Address> locations;
+    private List<AddressDto> locations;
     private Info info;
 
     @Data

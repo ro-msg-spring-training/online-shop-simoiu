@@ -18,7 +18,7 @@
 		<snakeyaml.version>1.33</snakeyaml.version>
 		<jackson.version>2.14.0-rc2</jackson.version>
 		<modelmapper.version>3.1.0</modelmapper.version>
-		<flyway-core.version>9.5.1</flyway-core.version>
+		<flyway-core.version>9.6.0</flyway-core.version>
 	</properties>
 	<dependencies>
 		<dependency>

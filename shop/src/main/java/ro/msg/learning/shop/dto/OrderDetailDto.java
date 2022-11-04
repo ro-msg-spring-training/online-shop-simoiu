@@ -12,5 +12,6 @@ import lombok.NoArgsConstructor;
 public class OrderDetailDto {
     private Integer id;
     private Integer productId;
+    private Integer locationId;
     private int quantity;
 }

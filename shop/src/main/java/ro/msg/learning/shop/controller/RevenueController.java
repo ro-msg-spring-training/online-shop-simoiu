@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import ro.msg.learning.shop.dto.RevenueDto;
+import ro.msg.learning.shop.mapper.RevenueMapper;
 import ro.msg.learning.shop.service.RevenueService;
 
 import java.time.LocalDate;
@@ -15,10 +16,11 @@ import java.util.List;
 @RequestMapping(value = "/revenues", produces = MediaType.APPLICATION_JSON_VALUE)
 public class RevenueController {
     private final RevenueService revenueService;
+    private final RevenueMapper revenueMapper;
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<RevenueDto> getRevenuesForDate(@RequestParam LocalDate date) {
-        return revenueService.getAllRevenues(date);
+        return revenueMapper.mapAllToDto(revenueService.getAllRevenues(date));
     }
 }

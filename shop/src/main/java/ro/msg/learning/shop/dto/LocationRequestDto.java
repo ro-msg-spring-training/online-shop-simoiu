@@ -6,7 +6,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.extern.jackson.Jacksonized;
-import ro.msg.learning.shop.model.Address;
 
 import java.util.List;
 
@@ -15,7 +14,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Jacksonized
-public class LocationRequest {
+public class LocationRequestDto {
     @JsonUnwrapped
-    private List<Address> locations;
+    private List<AddressDto> locations;
 }

@@ -1,10 +1,8 @@
 package ro.msg.learning.shop.converter;
 
-import com.fasterxml.jackson.dataformat.csv.CsvMapper;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
-import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
 import ro.msg.learning.shop.dto.StockDto;
 
@@ -23,8 +21,6 @@ class CsvHelperTest {
             8,10,2,12354
             4,1,19,8
             """;
-    @Spy
-    private CsvMapper csvMapper;
 
     @InjectMocks
     private CsvHelper<StockDto> csvHelper;

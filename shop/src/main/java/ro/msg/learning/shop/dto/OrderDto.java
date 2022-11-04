@@ -1,9 +1,11 @@
 package ro.msg.learning.shop.dto;
 
 import com.fasterxml.jackson.annotation.JsonUnwrapped;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.extern.jackson.Jacksonized;
-import ro.msg.learning.shop.model.Address;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -16,7 +18,7 @@ import java.util.List;
 public class OrderDto {
     private Integer id;
     @JsonUnwrapped
-    private Address deliveryAddress;
+    private AddressDto deliveryAddress;
     private LocalDateTime createdAt;
     private Integer customerId;
     private List<OrderDetailDto> orderedProducts;
