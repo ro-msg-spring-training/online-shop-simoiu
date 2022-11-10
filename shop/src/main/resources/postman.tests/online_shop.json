@@ -1,0 +1,735 @@
+{
+	"info": {
+		"_postman_id": "43e5ba4a-13be-4c11-8643-0de8b9a6520d",
+		"name": "Online shop",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Product",
+			"item": [
+				{
+					"name": "GET all products",
+					"id": "33af260f-d01d-41cf-8604-039141c6d688",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "hillevili",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "hillevili",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/products",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Product by id",
+					"id": "4bdbfa72-33f6-4657-b80b-9c0a5b912e29",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/products/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"products",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create new product",
+					"id": "ffa118ca-29b3-4ad0-9c82-c25c1f96bb46",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"GeForce RTX 4090 SUPRIM X 24G\",\r\n    \"description\": \"RTX 4090 SUPRIM X 24GB GDDR6X 384-bit\",\r\n    \"price\": 2430,\r\n    \"weight\": 2.4,\r\n    \"imageUrl\": \"https://asset.msi.com/resize/image/global/product/product_16655454640522cb62a2d8fd26c236e55f72b3603d.png62405b38c58fe0f07fcef2367d8a9ba1/1024.png\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/products/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"products",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Product by id",
+					"id": "edf41b33-4758-4760-a6b2-302b6b50493b",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"new name\",\r\n    \"description\": \"new description\",\r\n    \"price\": 555\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/products/update/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"products",
+								"update",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete product by id",
+					"id": "252920c5-e93d-4793-bbd4-7946a981e0b4",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/products/delete/:id",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"products",
+								"delete",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"id": "4937138e-3012-4547-bfa6-44fd4d634e17"
+		},
+		{
+			"name": "Order",
+			"item": [
+				{
+					"name": "Create order",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "7cc5e4b8-57b1-435f-80d5-3fc1704b239c",
+								"exec": [
+									"pm.test(\"response status is ok\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"the created order is valid\", function () {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    pm.expect(responseJson.id).to.exist;\r",
+									"    pm.expect(responseJson.orderedProducts).to.exist;\r",
+									"    responseJson.orderedProducts.forEach(op => pm.expect(op.id).to.exist)\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "8413d1ec-bc8e-469f-ba76-dd92c61e8319",
+								"exec": [
+									"var moment = require('moment');\r",
+									"pm.environment.set('createdAt', moment().format((\"YYYY-MM-DD HH:mm:ss\")));"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "c8a12a4a-c161-4add-a60c-4e6921fef4cf",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"createdAt\": \"{{createdAt}}\",\r\n    \"orderedProducts\": [\r\n        {\r\n            \"productId\": 1,\r\n            \"quantity\": 6\r\n        },\r\n        {\r\n            \"productId\": 4,\r\n            \"quantity\": 8\r\n        },\r\n        {\r\n            \"productId\": 3,\r\n            \"quantity\": 13\r\n        },\r\n        {\r\n            \"productId\": 7,\r\n            \"quantity\": 110\r\n        }\r\n    ],\r\n    \"country\": \"USA\",\r\n    \"city\": \"New York\",\r\n    \"county\": \"New York\",\r\n    \"street\": \"23 Grove Street\",\r\n    \"customerId\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/orders/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"orders",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create order with invalid product id(s)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "7cc5e4b8-57b1-435f-80d5-3fc1704b239c",
+								"exec": [
+									"pm.test(\"response status is not found\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "e663d465-d6f8-4567-8755-d005a38b7dc6",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"createdAt\": \"2022-10-10 12:12:12\",\r\n    \"orderedProducts\": [\r\n        {\r\n            \"productId\": 1,\r\n            \"quantity\": 1\r\n        },\r\n        {\r\n            \"productId\": 44,\r\n            \"quantity\": 2\r\n        }\r\n    ],\r\n    \"country\": \"USA\",\r\n    \"city\": \"Los Angeles\",\r\n    \"county\": \"Los Angeles\",\r\n    \"street\": \"5723 Morgan Ave\",\r\n    \"customerId\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/orders/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"orders",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create order with too many orders",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "7cc5e4b8-57b1-435f-80d5-3fc1704b239c",
+								"exec": [
+									"pm.test(\"response status is not found\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "f82966ef-4ebd-4a75-8935-7eac420c9675",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"createdAt\": \"2022-10-10 12:12:12\",\r\n    \"orderedProducts\": [\r\n        {\r\n            \"productId\": 2,\r\n            \"quantity\": 300\r\n        }\r\n    ],\r\n    \"country\": \"USA\",\r\n    \"city\": \"Los Angeles\",\r\n    \"county\": \"Los Angeles\",\r\n    \"street\": \"5723 Morgan Ave\",\r\n    \"customerId\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/orders/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"orders",
+								"create"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"id": "10b52d93-6a6e-48f3-b85e-d8b5d894d58a"
+		},
+		{
+			"name": "Stock",
+			"item": [
+				{
+					"name": "GET all stocks as CSV",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4b4bf5e7-321b-4989-ab1b-96c809405005",
+								"exec": [
+									"pm.test(\"response status is ok\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"response json contains created order\", function () {\r",
+									"    const parse = require('csv-parse/lib/sync');\r",
+									"    const responseJson = parse(pm.response.text());\r",
+									"    pm.expect(responseJson).to.have.length.greaterThan(0);\r",
+									"    pm.expect(responseJson[0]).to.deep.equal([\"id\", \"locationId\", \"productId\", \"quantity\"])\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "76b7fb25-991e-4527-831c-9ca05a526b80",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/stocks",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"stocks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET stocks by locationId",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "6c26a7ae-763c-4ed9-85ca-06a45bbe05e7",
+								"exec": [
+									"pm.test(\"response status is ok\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"response json contains created order\", function () {\r",
+									"    const parse = require('csv-parse/lib/sync');\r",
+									"    const responseJson = parse(pm.response.text(), { columns: true });\r",
+									"    pm.expect(responseJson).to.have.length.greaterThan(0);\r",
+									"    const requestLocationId = pm.request.url.path.at(-1);\r",
+									"    responseJson.forEach(row => pm.expect(row[\"locationId\"]).eq(requestLocationId));\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "d8b0d2f2-b085-47f4-908f-9ff8b88ecae3",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/stocks/:locationId",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"stocks",
+								":locationId"
+							],
+							"variable": [
+								{
+									"key": "locationId",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"id": "c98f49dc-eafc-4e71-a2b2-b678342dac6b"
+		},
+		{
+			"name": "Migration",
+			"item": [
+				{
+					"name": "Populate db",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b0a74ee1-1228-4160-bd96-c68df6f131fb",
+								"exec": [
+									"pm.test(\"response status is ok\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "a4a1b144-3c4d-47e6-8e49-19c0e47ead15",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/test/populate",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"test",
+								"populate"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Clean db data",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f80a7cbf-f229-42aa-a567-98e19667019f",
+								"exec": [
+									"pm.test(\"response status is ok\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "2192176e-ce2c-4fdd-97d6-87db8bd880a8",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/test/clear",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"test",
+								"clear"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"id": "e738ad44-40fa-4ab4-be67-f6c776570769"
+		},
+		{
+			"name": "Revenue",
+			"item": [
+				{
+					"name": "GET revenues by date",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4147e288-2d88-4fc9-8e43-54b9f8c3e9f0",
+								"exec": [
+									"pm.test(\"response status is ok\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "58e98561-430b-48e0-b92a-822b8a1c4a4d",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "hillevili",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "hillevili",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/revenues?date=2022-11-02",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"revenues"
+							],
+							"query": [
+								{
+									"key": "date",
+									"value": "2022-11-02"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"id": "f19ef949-3cb1-4eb8-b081-1c2590a88bdc"
+		}
+	]
+}
