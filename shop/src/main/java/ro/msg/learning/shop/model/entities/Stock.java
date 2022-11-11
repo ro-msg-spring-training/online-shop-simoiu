@@ -16,7 +16,7 @@ import javax.persistence.*;
 @Table(name = "STOCK")
 @SuperBuilder(toBuilder = true)
 public class Stock extends BaseEntity {
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn
     private Product product;
 

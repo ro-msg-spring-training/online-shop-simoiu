@@ -6,6 +6,8 @@ import ro.msg.learning.shop.dto.OrderDto;
 import ro.msg.learning.shop.model.entities.Customer;
 import ro.msg.learning.shop.model.entities.Order;
 
+import static ro.msg.learning.shop.helper.MapperHelper.getIdFromEntity;
+
 @Component
 @RequiredArgsConstructor
 public class OrderMapper implements DtoMapper<Order, OrderDto> {
@@ -17,7 +19,7 @@ public class OrderMapper implements DtoMapper<Order, OrderDto> {
         return OrderDto.builder()
                 .id(entity.getId())
                 .createdAt(entity.getCreatedAt())
-                .customerId(entity.getCustomer().getId())
+                .customerId(getIdFromEntity(entity.getCustomer()))
                 .deliveryAddress(addressMapper.mapToDto(entity.getAddress()))
                 .orderedProducts(orderDetailMapper.mapAllToDto(entity.getOrderedProducts()))
                 .build();

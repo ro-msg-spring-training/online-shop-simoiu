@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ro.msg.learning.shop.exception.NoSuchElementFoundException;
 import ro.msg.learning.shop.model.entities.Product;
-import ro.msg.learning.shop.repository.ProductRepository;
+import ro.msg.learning.shop.repository.jdbc.ProductRepositoryJdbc;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -16,7 +16,7 @@ import static java.util.Objects.requireNonNullElse;
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
 public class ProductService {
-    private final ProductRepository productRepository;
+    private final ProductRepositoryJdbc productRepository;
 
     public List<Product> getAllProducts() {
         return productRepository.findAll();

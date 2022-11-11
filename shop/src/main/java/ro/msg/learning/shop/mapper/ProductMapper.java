@@ -6,6 +6,8 @@ import ro.msg.learning.shop.model.entities.Product;
 import ro.msg.learning.shop.model.entities.ProductCategory;
 import ro.msg.learning.shop.model.entities.Supplier;
 
+import static ro.msg.learning.shop.helper.MapperHelper.getIdFromEntity;
+
 @Component
 public class ProductMapper implements DtoMapper<Product, ProductDto> {
 
@@ -17,8 +19,8 @@ public class ProductMapper implements DtoMapper<Product, ProductDto> {
                 .price(entity.getPrice())
                 .weight(entity.getWeight())
                 .imageUrl(entity.getImageUrl())
-                .categoryId(entity.getCategory().getId())
-                .supplierId(entity.getSupplier().getId())
+                .categoryId(getIdFromEntity(entity.getCategory()))
+                .supplierId(getIdFromEntity(entity.getSupplier()))
                 .build();
     }
 

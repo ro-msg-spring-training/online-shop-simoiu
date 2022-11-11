@@ -5,6 +5,8 @@ import ro.msg.learning.shop.dto.RevenueDto;
 import ro.msg.learning.shop.model.entities.Location;
 import ro.msg.learning.shop.model.entities.Revenue;
 
+import static ro.msg.learning.shop.helper.MapperHelper.getIdFromEntity;
+
 @Component
 public class RevenueMapper implements DtoMapper<Revenue, RevenueDto> {
     @Override
@@ -13,7 +15,7 @@ public class RevenueMapper implements DtoMapper<Revenue, RevenueDto> {
                 .id(entity.getId())
                 .date(entity.getDate())
                 .sum(entity.getSum())
-                .locationId(entity.getLocation().getId())
+                .locationId(getIdFromEntity(entity.getLocation()))
                 .build();
     }
 

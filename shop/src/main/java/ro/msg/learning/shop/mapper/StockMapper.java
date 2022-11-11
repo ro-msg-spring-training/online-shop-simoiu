@@ -6,6 +6,8 @@ import ro.msg.learning.shop.model.entities.Location;
 import ro.msg.learning.shop.model.entities.Product;
 import ro.msg.learning.shop.model.entities.Stock;
 
+import static ro.msg.learning.shop.helper.MapperHelper.getIdFromEntity;
+
 @Component
 public class StockMapper implements DtoMapper<Stock, StockDto> {
     @Override
@@ -13,8 +15,8 @@ public class StockMapper implements DtoMapper<Stock, StockDto> {
         return StockDto.builder()
                 .id(entity.getId())
                 .quantity(entity.getQuantity())
-                .locationId(entity.getLocation().getId())
-                .productId(entity.getProduct().getId())
+                .locationId(getIdFromEntity(entity.getLocation()))
+                .productId(getIdFromEntity(entity.getProduct()))
                 .build();
     }
 
