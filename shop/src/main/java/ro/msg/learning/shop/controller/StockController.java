@@ -28,7 +28,7 @@ public class StockController {
 
     @GetMapping(value = "/{locationId}")
     @ResponseStatus(HttpStatus.OK)
-    public List<StockDto> getStocksByLocationId(@PathVariable Integer locationId) {
+    public List<StockDto> getStocksByLocationId(@PathVariable String locationId) {
         return stockMapper.mapAllToDto(stockService.getStocksByLocationId(locationId));
     }
 }

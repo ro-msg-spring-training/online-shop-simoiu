@@ -13,8 +13,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import static ro.msg.learning.shop.repository.StockCustomRepositoryImpl.hasLocationAndProducts;
-
 @RequiredArgsConstructor
 public class SingleLocationStrategy implements LocationStrategy {
     private final StockRepository stockRepository;
@@ -27,8 +25,7 @@ public class SingleLocationStrategy implements LocationStrategy {
         }
         var productToQuantity =
                 order.getOrderedProducts().stream().collect(Collectors.toMap(OrderDetail::getProduct, OrderDetail::getQuantity));
-        return stockRepository
-                .findAll(hasLocationAndProducts(locationsHavingRequiredProducts.get(0), order.getOrderedProducts()))
+        return stockRepository.findByLocationAndProducts(locationsHavingRequiredProducts.get(0), order.getOrderedProducts())
                 .stream()
                 .map(stock -> updateStockQuantity(stock, productToQuantity))
                 .toList();

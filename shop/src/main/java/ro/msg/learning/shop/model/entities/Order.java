@@ -6,30 +6,30 @@ import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import lombok.experimental.SuperBuilder;
+import org.springframework.data.annotation.ReadOnlyProperty;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.DocumentReference;
 
-import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
 
-@Entity
 @Getter
 @Setter
 @ToString
 @RequiredArgsConstructor
-@Table(name = "ORDER")
+@Document
 @SuperBuilder
 public class Order extends BaseEntity {
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn
-    private Customer customer;
-
     private LocalDateTime createdAt;
 
-    @Embedded
     @JsonUnwrapped
     private Address address;
 
-    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
+    @DocumentReference(lazy = true)
+    private Customer customer;
+
+    @ReadOnlyProperty
+    @DocumentReference(lookup = "{'order':?#{#self._id} }")
     @ToString.Exclude
     private List<OrderDetail> orderedProducts;
 }

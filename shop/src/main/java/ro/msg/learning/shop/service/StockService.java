@@ -19,12 +19,12 @@ public class StockService {
         return stockRepository.findAll();
     }
 
-    public List<Stock> getStocksByLocationId(Integer locationId) {
+    public List<Stock> getStocksByLocationId(String locationId) {
         return stockRepository.findAllByLocationId(locationId);
     }
 
     @Transactional
-    public void updateStock(Integer productId, Integer locationId, @PositiveOrZero int quantity) {
+    public void updateStock(String productId, String locationId, @PositiveOrZero int quantity) {
         var stock = stockRepository.findByProductIdAndLocationId(productId, locationId);
         stock.setQuantity(stock.getQuantity() - quantity);
         stockRepository.save(stock);

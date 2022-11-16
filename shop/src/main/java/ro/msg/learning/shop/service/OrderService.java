@@ -25,7 +25,6 @@ public class OrderService {
                         .map(stock -> convertStockToOrderDetail(stock, order))
                         .toList()
         );
-        order.getOrderedProducts().forEach(od -> od.setOrder(order));
         var savedOrder = orderRepository.save(order);
         stocks.forEach(stock -> stockService.updateStock(stock.getProduct().getId(), stock.getLocation().getId(), stock.getQuantity()));
         return savedOrder;

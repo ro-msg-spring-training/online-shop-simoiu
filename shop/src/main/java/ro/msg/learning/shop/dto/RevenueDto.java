@@ -15,8 +15,8 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 public class RevenueDto {
-    private Integer id;
-    private Integer locationId;
+    private String id;
+    private String locationId;
     private LocalDate date;
     @JsonSerialize(using = BigDecimalToCurrencySerializer.class)
     private BigDecimal sum;

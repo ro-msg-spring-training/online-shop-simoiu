@@ -6,36 +6,36 @@ import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import lombok.experimental.SuperBuilder;
+import org.springframework.data.annotation.ReadOnlyProperty;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.DocumentReference;
 
-import javax.persistence.Embedded;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
 import java.util.List;
 
-@Entity
 @Getter
 @Setter
 @ToString
 @RequiredArgsConstructor
-@Table(name = "Location")
+@Document
 @SuperBuilder
 public class Location extends BaseEntity {
     private String name;
 
-    @Embedded
     @JsonUnwrapped
     private Address address;
 
-    @OneToMany(mappedBy = "shippedFrom")
+    @ReadOnlyProperty
+    @DocumentReference(lookup = "{'shippedFrom':?#{#self._id} }")
     @ToString.Exclude
     private List<OrderDetail> orderDetails;
 
-    @OneToMany(mappedBy = "location")
+    @ReadOnlyProperty
+    @DocumentReference(lookup = "{'location':?#{#self._id} }")
     @ToString.Exclude
     private List<Revenue> revenues;
 
-    @OneToMany(mappedBy = "location")
+    @ReadOnlyProperty
+    @DocumentReference(lookup = "{'location':?#{#self._id} }")
     @ToString.Exclude
     private List<Stock> stocks;
 }

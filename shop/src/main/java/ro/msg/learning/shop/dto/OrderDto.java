@@ -16,10 +16,10 @@ import java.util.List;
 @NoArgsConstructor
 @Jacksonized
 public class OrderDto {
-    private Integer id;
+    private String id;
     @JsonUnwrapped
     private AddressDto deliveryAddress;
     private LocalDateTime createdAt;
-    private Integer customerId;
+    private String customerId;
     private List<OrderDetailDto> orderedProducts;
 }

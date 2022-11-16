@@ -1,5 +1,0 @@
-ALTER TABLE product
-    ALTER COLUMN price SET NULL;
-
-ALTER TABLE product
-    ALTER COLUMN weight SET NULL;

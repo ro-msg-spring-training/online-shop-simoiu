@@ -5,17 +5,18 @@ import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import lombok.experimental.SuperBuilder;
+import org.springframework.data.annotation.ReadOnlyProperty;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.DocumentReference;
 
-import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import java.util.List;
 
-@Entity
 @Getter
 @Setter
 @ToString
 @RequiredArgsConstructor
-@Table(name = "Product")
+@Document
 @SuperBuilder
 public class Product extends BaseEntity {
     @NotEmpty
@@ -25,18 +26,19 @@ public class Product extends BaseEntity {
     private Double weight;
     private String imageUrl;
 
-    @ManyToOne
-    @JoinColumn
+    @DocumentReference(lazy = true)
     private ProductCategory category;
 
-    @ManyToOne
+    @DocumentReference(lazy = true)
     private Supplier supplier;
 
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+    @ReadOnlyProperty
+    @DocumentReference(lookup = "{'product':?#{#self._id} }")
     @ToString.Exclude
     private List<Stock> stocks;
 
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+    @ReadOnlyProperty
+    @DocumentReference(lookup = "{'product':?#{#self._id} }")
     @ToString.Exclude
     private List<OrderDetail> orderDetails;
 }

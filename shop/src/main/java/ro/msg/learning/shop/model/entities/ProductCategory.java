@@ -5,25 +5,25 @@ import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import lombok.experimental.SuperBuilder;
+import org.springframework.data.annotation.ReadOnlyProperty;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.DocumentReference;
 
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
 import java.util.List;
 
-@Entity
 @Getter
 @Setter
 @ToString
 @RequiredArgsConstructor
-@Table(name = "PRODUCT_CATEGORY")
+@Document
 @SuperBuilder
 public class ProductCategory extends BaseEntity {
     private String name;
 
     private String description;
 
-    @OneToMany(mappedBy = "category")
+    @ReadOnlyProperty
+    @DocumentReference(lookup = "{'category':?#{#self._id} }")
     @ToString.Exclude
     private List<Product> products;
 }

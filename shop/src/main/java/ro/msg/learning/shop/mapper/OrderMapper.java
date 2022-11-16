@@ -30,7 +30,7 @@ public class OrderMapper implements DtoMapper<Order, OrderDto> {
         return Order.builder()
                 .id(dto.getId())
                 .createdAt(dto.getCreatedAt())
-                .customer(Customer.builder().id(dto.getId()).build())
+                .customer(Customer.builder().id(dto.getCustomerId()).build())
                 .address(addressMapper.mapToEntity(dto.getDeliveryAddress()))
                 .orderedProducts(orderDetailMapper.mapAllToEntities(dto.getOrderedProducts()))
                 .build();

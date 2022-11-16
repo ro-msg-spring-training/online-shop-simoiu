@@ -35,7 +35,7 @@ public class GreedyStrategy implements LocationStrategy {
         return stocks;
     }
 
-    private List<Stock> extract(Integer locationId, Map<Product, Integer> productIdToQuantity) {
+    private List<Stock> extract(String locationId, Map<Product, Integer> productIdToQuantity) {
         var selectedStocks = new ArrayList<Stock>();
         productIdToQuantity.replaceAll((product, quantity) -> {
             var currentStock = stockRepository.findByProductIdAndLocationId(product.getId(), locationId);

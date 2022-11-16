@@ -55,9 +55,9 @@ class CsvHelperTest {
 
     private List<StockDto> generateStockList() {
         return List.of(
-                StockDto.builder().id(1).locationId(5).productId(7).quantity(10).build(),
-                StockDto.builder().id(8).locationId(10).productId(2).quantity(12354).build(),
-                StockDto.builder().id(4).locationId(1).productId(19).quantity(8).build()
+                StockDto.builder().id("1").locationId("5").productId("7").quantity(10).build(),
+                StockDto.builder().id("8").locationId("10").productId("2").quantity(12354).build(),
+                StockDto.builder().id("4").locationId("1").productId("19").quantity(8).build()
         );
     }
 }

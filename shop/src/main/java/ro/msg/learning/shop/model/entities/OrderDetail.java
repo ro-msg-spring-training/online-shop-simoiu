@@ -5,26 +5,23 @@ import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import lombok.experimental.SuperBuilder;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.DocumentReference;
 
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-
-@Entity
 @Getter
 @Setter
 @ToString
 @RequiredArgsConstructor
-@Table(name = "ORDER_DETAIL")
+@Document
 @SuperBuilder
 public class OrderDetail extends BaseEntity {
-    @ManyToOne
+    @DocumentReference(lazy = true)
     private Order order;
 
-    @ManyToOne
+    @DocumentReference(lazy = true)
     private Product product;
 
-    @ManyToOne
+    @DocumentReference(lazy = true)
     private Location shippedFrom;
 
     private int quantity;

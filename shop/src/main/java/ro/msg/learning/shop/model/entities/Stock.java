@@ -5,23 +5,20 @@ import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import lombok.experimental.SuperBuilder;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.DocumentReference;
 
-import javax.persistence.*;
-
-@Entity
 @Getter
 @Setter
 @ToString
 @RequiredArgsConstructor
-@Table(name = "STOCK")
+@Document
 @SuperBuilder(toBuilder = true)
 public class Stock extends BaseEntity {
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn
+    @DocumentReference(lazy = true)
     private Product product;
 
-    @ManyToOne
-    @JoinColumn
+    @DocumentReference(lazy = true)
     private Location location;
 
     private int quantity;

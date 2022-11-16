@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ro.msg.learning.shop.exception.NoSuchElementFoundException;
 import ro.msg.learning.shop.model.entities.Product;
-import ro.msg.learning.shop.repository.jdbc.ProductRepositoryJdbc;
+import ro.msg.learning.shop.repository.ProductRepository;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -16,18 +16,18 @@ import static java.util.Objects.requireNonNullElse;
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
 public class ProductService {
-    private final ProductRepositoryJdbc productRepository;
+    private final ProductRepository productRepository;
 
     public List<Product> getAllProducts() {
         return productRepository.findAll();
     }
 
-    public Product getProductById(Integer id) {
+    public Product getProductById(String id) {
         return getProductEntityById(id);
     }
 
     @Transactional
-    public Product deleteProductById(Integer id) {
+    public Product deleteProductById(String id) {
         var product = getProductEntityById(id);
         productRepository.deleteById(id);
         return product;
@@ -39,7 +39,7 @@ public class ProductService {
     }
 
     @Transactional
-    public Product updateProductById(Integer id, Product updatedProduct) {
+    public Product updateProductById(String id, Product updatedProduct) {
         var product = getProductEntityById(id);
         mergeUpdatedProduct(product, updatedProduct);
         return productRepository.save(product);
@@ -53,10 +53,10 @@ public class ProductService {
         productEntity.setImageUrl(requireNonNullElse(updatedProduct.getImageUrl(), productEntity.getImageUrl()));
     }
 
-    private Product getProductEntityById(Integer id) {
+    private Product getProductEntityById(String id) {
         var product = productRepository.findById(id);
         if (product.isEmpty()) {
-            throw new NoSuchElementFoundException(String.format("There is no product with id=%d", id));
+            throw new NoSuchElementFoundException("There is no product with id=%s".formatted(id));
         }
         return product.get();
     }

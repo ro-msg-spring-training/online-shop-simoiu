@@ -1,15 +1,12 @@
 package ro.msg.learning.shop.model.entities;
 
-
-import lombok.*;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 import lombok.experimental.SuperBuilder;
+import org.springframework.data.annotation.Id;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
-
-@MappedSuperclass
 @Getter
 @Setter
 @ToString
@@ -17,8 +14,7 @@ import javax.persistence.MappedSuperclass;
 @SuperBuilder(toBuilder = true)
 public abstract class BaseEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private String id;
 
     @Override
     public boolean equals(Object o) {

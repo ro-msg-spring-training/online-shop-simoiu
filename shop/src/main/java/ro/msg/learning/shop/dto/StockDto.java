@@ -12,9 +12,9 @@ import javax.validation.constraints.PositiveOrZero;
 @NoArgsConstructor
 @AllArgsConstructor
 public class StockDto {
-    private Integer id;
-    private Integer productId;
-    private Integer locationId;
+    private String id;
+    private String productId;
+    private String locationId;
     @PositiveOrZero
     private int quantity;
 }

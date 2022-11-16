@@ -29,7 +29,7 @@ class MostAbundantStrategyTest extends AbstractStrategyTest {
     @Test
     void findStocksForOrder_whenThereAreNoLocationsToFulfilTheOrder_shouldReturnEmptyList() {
         var order = Order.builder().orderedProducts(orderedProducts).build();
-        when(stockRepository.findFirstByProductIdAndQuantityGreaterThanEqualOrderByQuantityDesc(any(Integer.class), anyInt())).thenReturn(null);
+        when(stockRepository.findFirstByProductIdAndQuantityGreaterThanEqualOrderByQuantityDesc(any(String.class), anyInt())).thenReturn(null);
         assertThrows(
                 NoLocationFoundException.class,
                 () -> locationStrategy.findStocksForOrder(order, null)
@@ -39,11 +39,11 @@ class MostAbundantStrategyTest extends AbstractStrategyTest {
     @Test
     void findStocksForOrder_whenThereAreMultipleLocationsToFulfilTheOrder_shouldReturnMostAbundantStockForEachOrderDetail() {
         var order = Order.builder().orderedProducts(orderedProducts).build();
-        var resultingList = mockRepository(1, 2, 3, 4);
+        var resultingList = mockRepository("1", "2", "3", "4");
         assertThat(locationStrategy.findStocksForOrder(order, null)).hasSize(resultingList.size());
     }
 
-    private List<Stock> mockRepository(Integer... productIds) {
+    private List<Stock> mockRepository(String... productIds) {
         return Stream.of(productIds).map(productId -> {
             var stock = resultingStocks.get(productId).get(0);
             when(stockRepository.findFirstByProductIdAndQuantityGreaterThanEqualOrderByQuantityDesc(eq(productId), anyInt())).thenReturn(stock);

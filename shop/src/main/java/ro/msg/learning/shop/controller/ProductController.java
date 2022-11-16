@@ -27,13 +27,13 @@ public class ProductController {
 
     @PostMapping(value = "/update/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public ProductDto updateProductById(@PathVariable Integer id, @RequestBody ProductDto productToUpdate) {
+    public ProductDto updateProductById(@PathVariable String id, @RequestBody ProductDto productToUpdate) {
         return productMapper.mapToDto(productService.updateProductById(id, productMapper.mapToEntity(productToUpdate)));
     }
 
     @DeleteMapping(value = "/delete/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public ProductDto deleteProductById(@PathVariable Integer id) {
+    public ProductDto deleteProductById(@PathVariable String id) {
         return productMapper.mapToDto(productService.deleteProductById(id));
     }
 
@@ -45,7 +45,7 @@ public class ProductController {
 
     @GetMapping(value = "/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public ProductDto getProductById(@PathVariable Integer id) {
+    public ProductDto getProductById(@PathVariable String id) {
         return productMapper.mapToDto(productService.getProductById(id));
     }
 }

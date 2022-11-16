@@ -5,18 +5,17 @@ import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import lombok.experimental.SuperBuilder;
+import org.springframework.data.annotation.ReadOnlyProperty;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.DocumentReference;
 
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
 import java.util.List;
 
-@Entity
 @Getter
 @Setter
 @ToString
 @RequiredArgsConstructor
-@Table(name = "CUSTOMER")
+@Document
 @SuperBuilder
 public class Customer extends BaseEntity {
     private String firstName;
@@ -25,7 +24,8 @@ public class Customer extends BaseEntity {
     private String password;
     private String emailAddress;
 
-    @OneToMany(mappedBy = "customer")
+    @ReadOnlyProperty
+    @DocumentReference(lookup = "{'customer':?#{#self._id} }")
     @ToString.Exclude
     private List<Order> orders;
 }

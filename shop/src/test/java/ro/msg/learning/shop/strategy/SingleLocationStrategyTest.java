@@ -2,11 +2,9 @@ package ro.msg.learning.shop.strategy;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.ArgumentMatchers;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.data.jpa.domain.Specification;
 import ro.msg.learning.shop.exception.NoLocationFoundException;
 import ro.msg.learning.shop.model.entities.Order;
 import ro.msg.learning.shop.model.entities.Stock;
@@ -41,13 +39,13 @@ class SingleLocationStrategyTest extends AbstractStrategyTest {
     @Test
     void findStocksForOrder_whenThereIsALocationToFulfilTheOrder_shouldReturnAllStocksForThatLocationAndForTheSpecifiedProducts() {
         var order = Order.builder().orderedProducts(orderedProducts).build();
-        when(stockRepository.findLocationsHavingRequiredProducts(any())).thenReturn(List.of(1));
-        var resultingList = mockRepository(1, 2, 3, 4);
-        when(stockRepository.findAll(ArgumentMatchers.<Specification<Stock>>any())).thenReturn(resultingList);
+        when(stockRepository.findLocationsHavingRequiredProducts(any())).thenReturn(List.of("1"));
+        var resultingList = mockRepository("1", "2", "3", "4");
+        when(stockRepository.findByLocationAndProducts(any(), any())).thenReturn(resultingList);
         assertThat(locationStrategy.findStocksForOrder(order, null)).hasSize(resultingList.size());
     }
 
-    private List<Stock> mockRepository(Integer... productIds) {
+    private List<Stock> mockRepository(String... productIds) {
         return Stream.of(productIds).map(productId -> resultingStocks.get(productId).get(0)).toList();
     }
 }

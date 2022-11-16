@@ -5,7 +5,7 @@ import ro.msg.learning.shop.model.entities.BaseEntity;
 
 @UtilityClass
 public class MapperHelper {
-    public static Integer getIdFromEntity(BaseEntity entity) {
+    public static String getIdFromEntity(BaseEntity entity) {
         return entity != null ? entity.getId() : null;
     }
 }

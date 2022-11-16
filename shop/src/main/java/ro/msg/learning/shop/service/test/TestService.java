@@ -2,11 +2,11 @@ package ro.msg.learning.shop.service.test;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Profile;
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ro.msg.learning.shop.model.entities.BaseEntity;
-import ro.msg.learning.shop.repository.*;
+import ro.msg.learning.shop.model.entities.*;
 
 import static ro.msg.learning.shop.helper.test.TestDataHelper.*;
 
@@ -15,45 +15,21 @@ import static ro.msg.learning.shop.helper.test.TestDataHelper.*;
 @Transactional
 @Profile("test")
 public class TestService {
-    private final ProductRepository productRepository;
-    private final LocationRepository locationRepository;
-    private final ProductCategoryRepository productCategoryRepository;
-    private final SupplierRepository supplierRepository;
-    private final CustomerRepository customerRepository;
-    private final StockRepository stockRepository;
-    private final OrderRepository orderRepository;
-    private final OrderDetailRepository orderDetailRepository;
+    private final MongoTemplate mongoTemplate;
 
     public void populateData() {
-        saveAndUpdateEntityId(laptop, productCategoryRepository);
-        saveAndUpdateEntityId(pcComponent, productCategoryRepository);
-        saveAndUpdateEntityId(mobile, productCategoryRepository);
-        saveAndUpdateEntityId(asus, supplierRepository);
-        saveAndUpdateEntityId(gigabyte, supplierRepository);
-        saveAndUpdateEntityId(samsung, supplierRepository);
-        saveAndUpdateEntityId(pcGarage, locationRepository);
-        saveAndUpdateEntityId(amazon, locationRepository);
-        saveAndUpdateEntityId(rogZephyrus, productRepository);
-        saveAndUpdateEntityId(rtx3080, productRepository);
-        saveAndUpdateEntityId(rx6900, productRepository);
-        saveAndUpdateEntityId(samsungS22Ultra, productRepository);
-        saveAndUpdateEntityId(admin, customerRepository);
-        stockRepository.saveAll(stocks);
+        mongoTemplate.insertAll(categories);
+        mongoTemplate.insertAll(suppliers);
+        mongoTemplate.insertAll(locations);
+        mongoTemplate.insertAll(products);
+        mongoTemplate.insertAll(stocks);
     }
 
     public void clearData() {
-        orderDetailRepository.deleteAllInBatch();
-        orderRepository.deleteAllInBatch();
-        stockRepository.deleteAllInBatch();
-        customerRepository.deleteAllInBatch();
-        productRepository.deleteAllInBatch();
-        locationRepository.deleteAllInBatch();
-        supplierRepository.deleteAllInBatch();
-        productCategoryRepository.deleteAllInBatch();
-    }
-
-    public static <T extends BaseEntity> void saveAndUpdateEntityId(T entity, JpaRepository<T, Integer> repository) {
-        var newEntity = repository.save(entity);
-        entity.setId(newEntity.getId());
+        mongoTemplate.remove(new Query(), ProductCategory.class);
+        mongoTemplate.remove(new Query(), Supplier.class);
+        mongoTemplate.remove(new Query(), Location.class);
+        mongoTemplate.remove(new Query(), Product.class);
+        mongoTemplate.remove(new Query(), Stock.class);
     }
 }

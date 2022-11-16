@@ -77,12 +77,11 @@ class MostAbundantLocationOrderControllerIntegrationTest {
         var orderDto = mapper.readValue(result.getResponse().getContentAsString(), OrderDto.class);
         var productIdToLocationId =
                 orderDto.getOrderedProducts().stream().collect(Collectors.toMap(OrderDetailDto::getProductId, OrderDetailDto::getLocationId));
-        Arrays.asList(rtx3080, rx6900).forEach(product ->
-                assertThat(productIdToLocationId).containsEntry(product.getId(), pcGarage.getId())
-        );
-        Arrays.asList(samsungS22Ultra, rogZephyrus).forEach(product ->
+        Arrays.asList(rtx3080, samsungS22Ultra).forEach(product ->
                 assertThat(productIdToLocationId).containsEntry(product.getId(), amazon.getId())
         );
+        assertThat(productIdToLocationId).containsEntry(rogZephyrus.getId(), eMAG.getId())
+                .containsEntry(rx6900.getId(), pcGarage.getId());
     }
 
     @Test

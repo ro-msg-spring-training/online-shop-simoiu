@@ -12,13 +12,13 @@ import javax.validation.constraints.NotEmpty;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ProductDto {
-    private Integer id;
+    private String id;
     @NotEmpty
     private String name;
     private String description;
     private Double price;
     private Double weight;
     private String imageUrl;
-    private Integer categoryId;
-    private Integer supplierId;
+    private String categoryId;
+    private String supplierId;
 }
