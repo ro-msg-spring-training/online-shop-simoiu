@@ -19,13 +19,13 @@
 							"type": "basic",
 							"basic": [
 								{
-									"key": "username",
-									"value": "hillevili",
+									"key": "password",
+									"value": "admin",
 									"type": "string"
 								},
 								{
-									"key": "password",
-									"value": "hillevili",
+									"key": "username",
+									"value": "admin",
 									"type": "string"
 								}
 							]
@@ -187,7 +187,7 @@
 							"variable": [
 								{
 									"key": "id",
-									"value": "1"
+									"value": "637352a28a24402d30bb5cd1"
 								}
 							]
 						}
@@ -233,7 +233,7 @@
 							"variable": [
 								{
 									"key": "id",
-									"value": "1"
+									"value": "637381230c78f55deacec750"
 								}
 							]
 						}
@@ -304,7 +304,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"createdAt\": \"{{createdAt}}\",\r\n    \"orderedProducts\": [\r\n        {\r\n            \"productId\": 1,\r\n            \"quantity\": 6\r\n        },\r\n        {\r\n            \"productId\": 4,\r\n            \"quantity\": 8\r\n        },\r\n        {\r\n            \"productId\": 3,\r\n            \"quantity\": 13\r\n        },\r\n        {\r\n            \"productId\": 7,\r\n            \"quantity\": 110\r\n        }\r\n    ],\r\n    \"country\": \"USA\",\r\n    \"city\": \"New York\",\r\n    \"county\": \"New York\",\r\n    \"street\": \"23 Grove Street\",\r\n    \"customerId\": 2\r\n}",
+							"raw": "{\r\n    \"createdAt\": \"{{createdAt}}\",\r\n    \"orderedProducts\": [\r\n        {\r\n            \"productId\": \"6373c1779dacf1502f75ed24\",\r\n            \"quantity\": 15\r\n        },\r\n        {\r\n            \"productId\": \"6373c1779dacf1502f75ed23\",\r\n            \"quantity\": 5\r\n        },\r\n        {\r\n            \"productId\": \"6373c1779dacf1502f75ed28\",\r\n            \"quantity\": 9\r\n        },\r\n        {\r\n            \"productId\": \"6373c1779dacf1502f75ed27\",\r\n            \"quantity\": 80\r\n        }\r\n    ],\r\n    \"country\": \"USA\",\r\n    \"city\": \"New York\",\r\n    \"county\": \"New York\",\r\n    \"street\": \"23 Grove Street\",\r\n    \"customerId\": \"6373c1779dacf1502f75ed14\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -428,7 +428,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"createdAt\": \"2022-10-10 12:12:12\",\r\n    \"orderedProducts\": [\r\n        {\r\n            \"productId\": 2,\r\n            \"quantity\": 300\r\n        }\r\n    ],\r\n    \"country\": \"USA\",\r\n    \"city\": \"Los Angeles\",\r\n    \"county\": \"Los Angeles\",\r\n    \"street\": \"5723 Morgan Ave\",\r\n    \"customerId\": 2\r\n}",
+							"raw": "{\r\n    \"createdAt\": \"2022-10-10 12:12:12\",\r\n    \"orderedProducts\": [\r\n        {\r\n            \"productId\": \"6373c1779dacf1502f75ed23\",\r\n            \"quantity\": 1\r\n        }\r\n    ],\r\n    \"country\": \"USA\",\r\n    \"city\": \"Los Angeles\",\r\n    \"county\": \"Los Angeles\",\r\n    \"street\": \"5723 Morgan Ave\",\r\n    \"customerId\": \"6373c1779dacf1502f75ed14\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -575,7 +575,7 @@
 							"variable": [
 								{
 									"key": "locationId",
-									"value": "1"
+									"value": "637294d8e5b7c507e449e66c"
 								}
 							]
 						}
@@ -676,17 +676,17 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "4147e288-2d88-4fc9-8e43-54b9f8c3e9f0",
+								"id": "98258e3e-8b56-4a1c-bcb6-2473ff09bdc5",
 								"exec": [
 									"pm.test(\"response status is ok\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
+									"    pm.response.to.have.status(200)\r",
 									"});"
 								],
 								"type": "text/javascript"
 							}
 						}
 					],
-					"id": "58e98561-430b-48e0-b92a-822b8a1c4a4d",
+					"id": "cfca58f7-62d8-44ce-9e80-a99cbbfb80d9",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -695,13 +695,13 @@
 							"type": "basic",
 							"basic": [
 								{
-									"key": "username",
-									"value": "hillevili",
+									"key": "password",
+									"value": "admin",
 									"type": "string"
 								},
 								{
-									"key": "password",
-									"value": "hillevili",
+									"key": "username",
+									"value": "admin",
 									"type": "string"
 								}
 							]
@@ -730,6 +730,110 @@
 				}
 			],
 			"id": "f19ef949-3cb1-4eb8-b081-1c2590a88bdc"
+		},
+		{
+			"name": "Oauth2",
+			"item": [
+				{
+					"name": "Google Oauth2",
+					"id": "25b5c31d-3e61-4978-8baa-fb613b63f78f",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "headerPrefix",
+									"value": "Bearer",
+									"type": "string"
+								},
+								{
+									"key": "clientSecret",
+									"value": "{{client_secret}}",
+									"type": "string"
+								},
+								{
+									"key": "clientId",
+									"value": "{{client_id}}",
+									"type": "string"
+								},
+								{
+									"key": "client_authentication",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "scope",
+									"value": "openid profile email",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "https://oauth2.googleapis.com/token",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "https://accounts.google.com/o/oauth2/auth",
+									"type": "string"
+								},
+								{
+									"key": "redirect_uri",
+									"value": "https://www.getpostman.com/oauth2/callback",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "authorization_code",
+									"type": "string"
+								},
+								{
+									"key": "useBrowser",
+									"value": false,
+									"type": "boolean"
+								},
+								{
+									"key": "username",
+									"value": "simoiu",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "0258751047@streboR",
+									"type": "string"
+								},
+								{
+									"key": "tokenName",
+									"value": "postman-token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/products",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"products"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"id": "455bfb93-d793-437e-9048-89bce408f747"
 		}
 	]
 }
