@@ -11,6 +11,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.thymeleaf.extras.springsecurity5.dialect.SpringSecurityDialect;
 
 import static org.springframework.security.config.Customizer.withDefaults;
 
@@ -56,11 +57,32 @@ public class SecurityConfig {
                 .oauth2Login();
         return http.build();
     }
+
     @Bean
     @Profile("test")
     public SecurityFilterChain testSecurityChain(HttpSecurity http) throws Exception {
         http.csrf().disable();
         return http.build();
+    }
+
+    @Bean
+    @Profile("thymeleaf")
+    protected SecurityFilterChain configureWithThymeleaf(HttpSecurity http) throws Exception {
+        http.authorizeRequests()
+                .antMatchers("/", "/home", "/product/**", "/shoppingCart", "/updateCart").permitAll()
+                .antMatchers("/**").authenticated()
+                .and()
+                .formLogin()
+                .loginPage("/login").permitAll().defaultSuccessUrl("/home")
+                .and()
+                .logout().permitAll().logoutSuccessUrl("/home");
+        return http.build();
+    }
+
+    @Bean
+    @Profile("thymeleaf")
+    public SpringSecurityDialect springSecurityDialect() {
+        return new SpringSecurityDialect();
     }
 
     @Bean

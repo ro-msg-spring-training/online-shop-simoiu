@@ -19,6 +19,6 @@ public class ProductDto {
     private Double price;
     private Double weight;
     private String imageUrl;
-    private String categoryId;
-    private String supplierId;
+    private ProductCategoryDto category;
+    private SupplierDto supplier;
 }

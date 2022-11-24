@@ -9,10 +9,11 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class OrderDetailDto {
+public class CustomerDto {
     private String id;
-    private String productId;
-    private String productName;
-    private String locationId;
-    private int quantity;
+    private String firstName;
+    private String lastName;
+    private String username;
+    private String password;
+    private String emailAddress;
 }

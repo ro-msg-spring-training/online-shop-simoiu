@@ -1,15 +1,15 @@
 package ro.msg.learning.shop.mapper;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import ro.msg.learning.shop.dto.ProductDto;
 import ro.msg.learning.shop.model.entities.Product;
-import ro.msg.learning.shop.model.entities.ProductCategory;
-import ro.msg.learning.shop.model.entities.Supplier;
-
-import static ro.msg.learning.shop.helper.MapperHelper.getIdFromEntity;
 
 @Component
+@RequiredArgsConstructor
 public class ProductMapper implements DtoMapper<Product, ProductDto> {
+    private final ProductCategoryMapper productCategoryMapper;
+    private final SupplierMapper supplierMapper;
 
     @Override
     public ProductDto mapToDto(Product entity) {
@@ -20,8 +20,8 @@ public class ProductMapper implements DtoMapper<Product, ProductDto> {
                 .price(entity.getPrice())
                 .weight(entity.getWeight())
                 .imageUrl(entity.getImageUrl())
-                .categoryId(getIdFromEntity(entity.getCategory()))
-                .supplierId(getIdFromEntity(entity.getSupplier()))
+                .category(productCategoryMapper.mapToDto(entity.getCategory()))
+                .supplier(supplierMapper.mapToDto(entity.getSupplier()))
                 .build();
     }
 
@@ -34,8 +34,8 @@ public class ProductMapper implements DtoMapper<Product, ProductDto> {
                 .price(dto.getPrice())
                 .weight(dto.getWeight())
                 .imageUrl(dto.getImageUrl())
-                .category(ProductCategory.builder().id(dto.getId()).build())
-                .supplier(Supplier.builder().id(dto.getSupplierId()).build())
+                .category(productCategoryMapper.mapToEntity(dto.getCategory()))
+                .supplier(supplierMapper.mapToEntity(dto.getSupplier()))
                 .build();
     }
 }
