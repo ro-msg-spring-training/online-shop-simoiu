@@ -33,7 +33,7 @@ public class OrderService {
     private OrderDetail convertStockToOrderDetail(Stock stock, Order order) {
         return OrderDetail.builder()
                 .order(order)
-                .product(Product.builder().id(stock.getProduct().getId()).build())
+                .product(Product.builder().id(stock.getProduct().getId()).name(stock.getProduct().getName()).build())
                 .shippedFrom(Location.builder().id(stock.getLocation().getId()).build())
                 .quantity(stock.getQuantity())
                 .build();

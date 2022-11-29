@@ -9,7 +9,7 @@ public class CustomerMapper implements DtoMapper<Customer, CustomerDto> {
     @Override
     public CustomerDto mapToDto(Customer entity) {
         return CustomerDto.builder()
-                .id(entity.getId())
+                .customerId(entity.getId())
                 .emailAddress(entity.getEmailAddress())
                 .firstName(entity.getFirstName())
                 .lastName(entity.getLastName())
@@ -21,7 +21,7 @@ public class CustomerMapper implements DtoMapper<Customer, CustomerDto> {
     @Override
     public Customer mapToEntity(CustomerDto dto) {
         return Customer.builder()
-                .id(dto.getId())
+                .id(dto.getCustomerId())
                 .emailAddress(dto.getEmailAddress())
                 .firstName(dto.getFirstName())
                 .lastName(dto.getLastName())

@@ -15,6 +15,7 @@ public class OrderDetailMapper implements DtoMapper<OrderDetail, OrderDetailDto>
         return OrderDetailDto.builder()
                 .id(entity.getId())
                 .quantity(entity.getQuantity())
+                .productName(entity.getProduct().getName())
                 .productId(getIdFromEntity(entity.getProduct()))
                 .locationId(getIdFromEntity(entity.getShippedFrom()))
                 .build();

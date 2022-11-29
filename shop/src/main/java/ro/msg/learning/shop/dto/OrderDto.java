@@ -20,6 +20,7 @@ public class OrderDto {
     @JsonUnwrapped
     private AddressDto deliveryAddress;
     private LocalDateTime createdAt;
-    private String customerId;
+    @JsonUnwrapped
+    private CustomerDto customer;
     private List<OrderDetailDto> orderedProducts;
 }

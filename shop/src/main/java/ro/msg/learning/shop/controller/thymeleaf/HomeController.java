@@ -14,6 +14,7 @@ import ro.msg.learning.shop.controller.CustomerController;
 import ro.msg.learning.shop.controller.OrderController;
 import ro.msg.learning.shop.controller.ProductController;
 import ro.msg.learning.shop.dto.AddressDto;
+import ro.msg.learning.shop.dto.CustomerDto;
 import ro.msg.learning.shop.dto.OrderDetailDto;
 import ro.msg.learning.shop.dto.OrderDto;
 import ro.msg.learning.shop.dto.thymeleaf.ShoppingCartDto;
@@ -97,7 +98,7 @@ public class HomeController {
                 .orderedProducts(shoppingCartService.getShoppingCart())
                 .deliveryAddress(address)
                 .createdAt(LocalDateTime.now())
-                .customerId(getLoggedInUser())
+                .customer(getLoggedInUser())
                 .build();
         try {
             orderController.createOrder(orderDto);
@@ -111,10 +112,10 @@ public class HomeController {
         return "redirect:/home";
     }
 
-    private String getLoggedInUser() {
+    private CustomerDto getLoggedInUser() {
         var principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         var username = principal instanceof UserDetails userDetails ? userDetails.getUsername() : principal.toString();
         var customer = customerController.getCustomerByUsername(username);
-        return customer.getId();
+        return CustomerDto.builder().customerId(customer.getCustomerId()).build();
     }
 }

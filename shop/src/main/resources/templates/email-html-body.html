@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>Order Summary</title>
+</head>
+<body>
+<h3> Details of your last placed order with the following ID: #[( ${orderDetails.id} )] are displayed below:</h3>
+<table>
+    <thead>
+    <tr>
+        <th>Product Name</th>
+        <th style="padding-left: 30%">Quantity</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="orderDetail : ${orderDetails.getOrderedProducts()}">
+        <td th:text="*{orderDetail.productName}"></td>
+        <td th:text="*{orderDetail.quantity}" style="padding-left: 30%"></td>
+    </tr>
+    </tbody>
+</table>
+<br> The shipping address specified by you is:
+<div th:text="|${orderDetails.getCustomer().getFirstName()} ${orderDetails.getCustomer().getLastName()}|"/>
+<div th:text="${orderDetails.getDeliveryAddress().street}"/>
+<div th:text="|${orderDetails.getDeliveryAddress().city}, ${orderDetails.getDeliveryAddress().county}|"/>
+<div th:text="${orderDetails.getDeliveryAddress().country}"/>
+</body>
+</html>

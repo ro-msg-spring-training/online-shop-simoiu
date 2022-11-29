@@ -6,6 +6,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import ro.msg.learning.shop.exception.NoSuchElementFoundException;
 import ro.msg.learning.shop.model.entities.Customer;
 import ro.msg.learning.shop.repository.CustomerRepository;
 
@@ -29,5 +30,17 @@ public class CustomUserDetailService implements UserDetailsService {
 
     public Customer getByUsername(String username) {
         return customerRepository.findByUsername(username);
+    }
+
+    public Customer getById(String id) {
+        return getCustomerEntityById(id);
+    }
+
+    private Customer getCustomerEntityById(String id) {
+        var customer = customerRepository.findById(id);
+        if (customer.isEmpty()) {
+            throw new NoSuchElementFoundException("There is no customer with id=%s".formatted(id));
+        }
+        return customer.get();
     }
 }

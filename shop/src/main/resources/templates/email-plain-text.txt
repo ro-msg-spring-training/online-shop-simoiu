@@ -1,0 +1,14 @@
+Details of your last placed order with the following ID: #[( ${orderDetails.id} )] are displayed below:
+
+The products you have ordered:
+
+Product name | Quantity
+[# th:each="orderDetail : ${orderDetails.orderedProducts}"]
+[( ${orderDetail.productName} )] | [( ${orderDetail.quantity} )]
+[/]
+
+The shipping address specified by you is:
+[( ${orderDetails.getCustomer().getFirstName()} )] [( ${orderDetails.getCustomer().getLastName()} )]
+[( ${orderDetails.getDeliveryAddress().street} )]
+[( ${orderDetails.getDeliveryAddress().city})], [( ${orderDetails.getDeliveryAddress().county} )]
+[( ${orderDetails.getDeliveryAddress().country} )]

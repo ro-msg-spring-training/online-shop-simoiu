@@ -23,6 +23,7 @@ public class TestService {
         mongoTemplate.insertAll(locations);
         mongoTemplate.insertAll(products);
         mongoTemplate.insertAll(stocks);
+        mongoTemplate.insertAll(users);
     }
 
     public void clearData() {
@@ -31,5 +32,6 @@ public class TestService {
         mongoTemplate.remove(new Query(), Location.class);
         mongoTemplate.remove(new Query(), Product.class);
         mongoTemplate.remove(new Query(), Stock.class);
+        mongoTemplate.remove(new Query(), Customer.class);
     }
 }

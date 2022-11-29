@@ -12,6 +12,7 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.web.servlet.MockMvc;
 import ro.msg.learning.shop.dto.AddressDto;
+import ro.msg.learning.shop.dto.CustomerDto;
 import ro.msg.learning.shop.dto.OrderDetailDto;
 import ro.msg.learning.shop.dto.OrderDto;
 import ro.msg.learning.shop.exception.NoLocationFoundException;
@@ -66,7 +67,7 @@ class MostAbundantLocationOrderControllerIntegrationTest {
                 .createdAt(LocalDateTime.now())
                 .deliveryAddress(address)
                 .orderedProducts(products)
-                .customerId(admin.getId()).build();
+                .customer(CustomerDto.builder().customerId(admin.getId()).build()).build();
         var ow = mapper.writer().withDefaultPrettyPrinter();
         var requestJson = ow.writeValueAsString(newOrder);
         var result = mvc.perform(post("/orders/create")
@@ -99,7 +100,7 @@ class MostAbundantLocationOrderControllerIntegrationTest {
                 .createdAt(LocalDateTime.now())
                 .deliveryAddress(address)
                 .orderedProducts(products)
-                .customerId(admin.getId()).build();
+                .customer(CustomerDto.builder().customerId(admin.getId()).build()).build();
         var ow = mapper.writer().withDefaultPrettyPrinter();
         var requestJson = ow.writeValueAsString(newOrder);
         mvc.perform(post("/orders/create")
